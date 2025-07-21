@@ -4,6 +4,7 @@ import pydirectinput
 from PyQt6 import uic
 from PyQt6.QtWidgets import QApplication, QPushButton, QWidget
 from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtGui import QIntValidator
 import keyboard
 
 
@@ -29,11 +30,17 @@ class ClickerThread(QThread):
 class Widget(QWidget):
     def __init__(self):
         super().__init__()
-        uic.loadUi('autoclickerUI.ui', self)
+        self.initUI()
         self.auto = False
         self.buttons()
-        self.stopButton.setEnabled(False)
         keyboard.add_hotkey('f6', self.toggle_clicker)
+
+    def initUI(self):
+        uic.loadUi('autoclickerUI.ui', self)
+        self.stopButton.setEnabled(False)
+        self.intervalEdit.setValidator(QIntValidator())
+        self.intervalEdit.setText('100')
+        self.setWindowTitle('AutoClicker')
 
     def buttons(self):
         self.startButton.clicked.connect(self.toggle_clicker)
