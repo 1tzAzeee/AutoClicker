@@ -3,7 +3,7 @@
 
 # Download link
 
-[![GitHub Release](https://img.shields.io/github/v/release/ItzAzee/AutoClicker?style=for-the-badge&label=Download&color=blue&logo=github)](https://github.com/ItzAzee/AutoClicker/releases/download/v1.0.0/Autoclicker.exe)
+[![GitHub Release](https://img.shields.io/github/v/release/ItzAzee/AutoClicker?style=for-the-badge&label=Download+for+windows&color=blue)](https://github.com/ItzAzee/AutoClicker/releases/download/v1.0.0/Autoclicker.exe)
 
 # What is this?
 
