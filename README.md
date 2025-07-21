@@ -1,4 +1,9 @@
-# ️ AutoClicker
+
+[![header](https://capsule-render.vercel.app/api?type=rounded&height=150&color=gradient&text=AutoClicker&fontColor=FFFFFF&animation=fadeIn)](https://github.com/ItzAzee/AutoClicker)
+
+# Download link
+
+[![GitHub Release](https://img.shields.io/github/v/release/ItzAzee/AutoClicker?style=for-the-badge&label=Download&color=blue&logo=github)](https://github.com/ItzAzee/AutoClicker/releases/download/v1.0.0/Autoclicker.exe)
 
 # What is this?
 
