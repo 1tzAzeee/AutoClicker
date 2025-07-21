@@ -1,5 +1,5 @@
 
-[![header](https://capsule-render.vercel.app/api?type=rounded&height=150&color=gradient&text=AutoClicker&fontColor=FFFFFF&animation=fadeIn)](https://github.com/ItzAzee/AutoClicker)
+[![header](https://capsule-render.vercel.app/api?type=rounded&height=150&color=gradient&text=AutoClicker&fontColor=FFFFFF&animation=fadeIn&fontAlignY=65)](https://github.com/ItzAzee/AutoClicker)
 
 # Download link
 
