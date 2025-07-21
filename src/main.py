@@ -1,9 +1,9 @@
 import sys
 
+from assets.generatedUI.main_widget import Ui_Form
 import pydirectinput
-from PyQt6 import uic
-from PyQt6.QtWidgets import QApplication, QPushButton, QWidget
-from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtWidgets import QApplication, QWidget
+from PyQt6.QtCore import QThread
 from PyQt6.QtGui import QIntValidator
 import keyboard
 
@@ -27,19 +27,22 @@ class ClickerThread(QThread):
         print('stopped')
 
 
-class Widget(QWidget):
+class Widget(QWidget, Ui_Form):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.hotkeys()
         self.auto = False
-        self.buttons()
+
+    def hotkeys(self):
         keyboard.add_hotkey('f6', self.toggle_clicker)
 
     def initUI(self):
-        uic.loadUi('autoclickerUI.ui', self)
+        self.setupUi(self)
+        self.buttons()
         self.stopButton.setEnabled(False)
-        self.intervalEdit.setValidator(QIntValidator())
-        self.intervalEdit.setText('100')
+        self.intervalEdit1.setValidator(QIntValidator())
+        self.intervalEdit1.setText('100')
         self.setWindowTitle('AutoClicker')
 
     def buttons(self):
@@ -56,7 +59,7 @@ class Widget(QWidget):
         try:
             self.auto = True
 
-            self.clicker_thread = ClickerThread(float(self.intervalEdit.text()))
+            self.clicker_thread = ClickerThread(float(self.intervalEdit1.text()))
             self.clicker_thread.start()
 
             self.startButton.setEnabled(False)
