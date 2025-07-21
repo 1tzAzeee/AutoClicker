@@ -3,14 +3,35 @@ import sys
 from assets.generatedUI.main_widget import Ui_Form
 import pydirectinput
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtCore import QThread
+from PyQt6.QtCore import QThread, pyqtSignal
 from PyQt6.QtGui import QIntValidator
 import keyboard
+import pynput
+
+
+class KeyListenerThread(QThread):
+    key_pressed = pyqtSignal(str)  # Сигнал для передачи нажатой клавиши
+
+    def run(self):
+        def on_press(key):
+            try:
+                # Для обычных клавиш (буквы, цифры)
+                key_str = key.char
+            except AttributeError:
+                # Для специальных клавиш (Ctrl, Shift и т.д.)
+                key_str = str(key).replace("Key.", "")
+            self.key_pressed.emit(key_str)
+            return False  # Останавливаем слушатель после первого нажатия
+
+        # Создаём и запускаем слушатель
+        with pynput.keyboard.Listener(on_press=on_press) as listener:
+            listener.join()
 
 
 class ClickerThread(QThread):
 
-    def __init__(self, clickType, clickMode, repeatMode, button, repeatCount=0, milliseconds=0, seconds=0, parent=None, parentWidget=None):
+    def __init__(self, clickType, clickMode, repeatMode, button, repeatCount=0, milliseconds=0, seconds=0, parent=None,
+                 parentWidget=None):
         super().__init__(parent)
         self.interval = milliseconds / 1000 + seconds
         self.running = False
@@ -35,7 +56,7 @@ class ClickerThread(QThread):
                     if self.clickType == 'Triple':
                         pydirectinput.tripleClick(button=self.clickButton.lower())
                         pydirectinput.PAUSE = self.interval
-                    print(f'clicked {self.clickButton}')
+                    print('clicked')
                 else:
                     for i in range(self.repeatCount):
                         if not self.running:
@@ -49,32 +70,23 @@ class ClickerThread(QThread):
                         if self.clickType == 'Triple':
                             pydirectinput.tripleClick(button=self.clickButton.lower())
                             pydirectinput.PAUSE = self.interval
-                        print(f'clicked {self.clickButton}')
                     else:
                         self.parentWidget.stop()
             else:
                 if self.repeatMode == 'RepeatUntilStopped':
                     pydirectinput.press(self.clickButton.lower())
                     pydirectinput.PAUSE = self.interval
-                    print(f'clicked {self.clickButton}')
                 else:
                     for i in range(self.repeatCount):
                         if not self.running:
                             break
                         pydirectinput.press(self.clickButton.lower())
                         pydirectinput.PAUSE = self.interval
-                        print(f'clicked {self.clickButton}')
                     else:
                         self.parentWidget.stop()
 
-
-
-
-
-
     def stop(self):
         self.running = False
-        print('stopped')
 
 
 class Widget(QWidget, Ui_Form):
@@ -102,6 +114,7 @@ class Widget(QWidget, Ui_Form):
     def buttons(self):
         self.startButton.clicked.connect(self.toggle_clicker)
         self.stopButton.clicked.connect(self.toggle_clicker)
+        self.setKeyButton.clicked.connect(self.startKeyCapture)
 
     def toggle_clicker(self):
         if self.auto:
@@ -120,7 +133,6 @@ class Widget(QWidget, Ui_Form):
             repeatMode = 'RepeatUntilStopped' if self.repeatUntilStoppedToggle.isChecked() else 'Repeat'
 
             clickButton = self.mouseButtonsBox.currentText() if clickMode == 'Mouse' else self.keyLabel.text()
-            print(clickButton)
 
             repeatCount = self.repeatSpinBox.value()
 
@@ -131,7 +143,8 @@ class Widget(QWidget, Ui_Form):
                 millisecs = 100
                 self.intervalEdit1.setText('100')
 
-            self.clicker_thread = ClickerThread(clickType, clickMode, repeatMode, clickButton, repeatCount, milliseconds=millisecs, seconds=secs, parentWidget=self)
+            self.clicker_thread = ClickerThread(clickType, clickMode, repeatMode, clickButton, repeatCount,
+                                                milliseconds=millisecs, seconds=secs, parentWidget=self)
             self.clicker_thread.start()
 
             self.startButton.setEnabled(False)
@@ -139,13 +152,24 @@ class Widget(QWidget, Ui_Form):
 
         except ValueError:
             self.startButton.setEnabled(True)
-            print('valueerror')
 
     def stop(self):
         self.auto = False
         self.startButton.setEnabled(True)
         self.stopButton.setEnabled(False)
         self.clicker_thread.stop()
+
+    def startKeyCapture(self):
+        self.setKeyButton.setEnabled(False)
+
+        self.listener_thread = KeyListenerThread()
+        self.listener_thread.key_pressed.connect(self.updateKey)
+        self.listener_thread.start()
+
+    def updateKey(self, key):
+        self.current_key = key
+        self.setKeyButton.setEnabled(True)
+        self.keyLabel.setText(key.upper())
 
 
 if __name__ == "__main__":
