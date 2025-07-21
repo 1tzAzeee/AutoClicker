@@ -7,7 +7,7 @@
 
 # What is this?
 
-**AutoClicker is an open-source automation tool that simulates mouse clicks and keyboard presses with customizable intervals. Perfect for gamers, testers, and anyone who needs automated input!**
+**AutoClicker is an open-source automation tool that simulates mouse clicks and keyboard presses with customizable intervals.**
 
 # How to Use
 
