@@ -10,17 +10,67 @@ import keyboard
 
 class ClickerThread(QThread):
 
-    def __init__(self, interval, parent=None):
+    def __init__(self, clickType, clickMode, repeatMode, button, repeatCount=0, milliseconds=0, seconds=0, parent=None, parentWidget=None):
         super().__init__(parent)
-        self.interval = interval / 1000
+        self.interval = milliseconds / 1000 + seconds
         self.running = False
+        self.clickType = clickType
+        self.repeatMode = repeatMode
+        self.clickButton = button
+        self.repeatCount = repeatCount
+        self.clickMode = clickMode
+        self.parentWidget = parentWidget
 
     def run(self):
         self.running = True
         while self.running:
-            print('clicked')
-            pydirectinput.click(button='left')
-            pydirectinput.PAUSE = self.interval
+            if self.clickMode == 'Mouse':
+                if self.repeatMode == 'RepeatUntilStopped':
+                    if self.clickType == 'Single':
+                        pydirectinput.click(button=self.clickButton.lower())
+                        pydirectinput.PAUSE = self.interval
+                    if self.clickType == 'Double':
+                        pydirectinput.doubleClick(button=self.clickButton.lower())
+                        pydirectinput.PAUSE = self.interval
+                    if self.clickType == 'Triple':
+                        pydirectinput.tripleClick(button=self.clickButton.lower())
+                        pydirectinput.PAUSE = self.interval
+                    print(f'clicked {self.clickButton}')
+                else:
+                    for i in range(self.repeatCount):
+                        if not self.running:
+                            break
+                        if self.clickType == 'Single':
+                            pydirectinput.click(button=self.clickButton.lower())
+                            pydirectinput.PAUSE = self.interval
+                        if self.clickType == 'Double':
+                            pydirectinput.doubleClick(button=self.clickButton.lower())
+                            pydirectinput.PAUSE = self.interval
+                        if self.clickType == 'Triple':
+                            pydirectinput.tripleClick(button=self.clickButton.lower())
+                            pydirectinput.PAUSE = self.interval
+                        print(f'clicked {self.clickButton}')
+                    else:
+                        self.parentWidget.stop()
+            else:
+                if self.repeatMode == 'RepeatUntilStopped':
+                    pydirectinput.press(self.clickButton.lower())
+                    pydirectinput.PAUSE = self.interval
+                    print(f'clicked {self.clickButton}')
+                else:
+                    for i in range(self.repeatCount):
+                        if not self.running:
+                            break
+                        pydirectinput.press(self.clickButton.lower())
+                        pydirectinput.PAUSE = self.interval
+                        print(f'clicked {self.clickButton}')
+                    else:
+                        self.parentWidget.stop()
+
+
+
+
+
 
     def stop(self):
         self.running = False
@@ -43,7 +93,11 @@ class Widget(QWidget, Ui_Form):
         self.stopButton.setEnabled(False)
         self.intervalEdit1.setValidator(QIntValidator())
         self.intervalEdit1.setText('100')
+        self.intervalEdit2.setValidator(QIntValidator())
         self.setWindowTitle('AutoClicker')
+        self.mouseModeToggle.setChecked(True)
+        self.repeatUntilStoppedToggle.setChecked(True)
+        self.repeatSpinBox.setValue(1)
 
     def buttons(self):
         self.startButton.clicked.connect(self.toggle_clicker)
@@ -59,7 +113,25 @@ class Widget(QWidget, Ui_Form):
         try:
             self.auto = True
 
-            self.clicker_thread = ClickerThread(float(self.intervalEdit1.text()))
+            clickType = self.clickTypeComboBox.currentText()
+
+            clickMode = 'Mouse' if self.mouseModeToggle.isChecked() else 'Keyboard'
+
+            repeatMode = 'RepeatUntilStopped' if self.repeatUntilStoppedToggle.isChecked() else 'Repeat'
+
+            clickButton = self.mouseButtonsBox.currentText() if clickMode == 'Mouse' else self.keyLabel.text()
+            print(clickButton)
+
+            repeatCount = self.repeatSpinBox.value()
+
+            millisecs = int(self.intervalEdit1.text()) if self.intervalEdit1.text() else 0
+            secs = int(self.intervalEdit2.text()) if self.intervalEdit2.text() else 0
+
+            if millisecs == 0 and secs == 0:
+                millisecs = 100
+                self.intervalEdit1.setText('100')
+
+            self.clicker_thread = ClickerThread(clickType, clickMode, repeatMode, clickButton, repeatCount, milliseconds=millisecs, seconds=secs, parentWidget=self)
             self.clicker_thread.start()
 
             self.startButton.setEnabled(False)
