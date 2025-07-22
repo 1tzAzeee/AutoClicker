@@ -3,10 +3,15 @@ import sys
 from assets.generatedUI.main_widget import Ui_Form
 import pydirectinput
 from PyQt6.QtWidgets import QApplication, QWidget
-from PyQt6.QtCore import QThread, pyqtSignal
+from PyQt6.QtCore import QThread, pyqtSignal, QFile, QTextStream
 from PyQt6.QtGui import QIntValidator
 import keyboard
 import pynput
+
+
+def load_stylesheet(filename: str) -> str:
+    with open(filename, 'r', encoding='utf-8') as f:
+        return '\n'.join(f.readlines())
 
 
 class KeyListenerThread(QThread):
@@ -98,6 +103,8 @@ class Widget(QWidget, Ui_Form):
 
     def initUI(self):
         self.setupUi(self)
+        self.setStyleSheet(load_stylesheet('assets/styles/night.css'))
+        self.setFixedSize(401, 383)
         self.buttons()
         self.stopButton.setEnabled(False)
         self.intervalEdit1.setValidator(QIntValidator())
@@ -171,6 +178,7 @@ class Widget(QWidget, Ui_Form):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     window = Widget()
     window.show()
     app.exec()
