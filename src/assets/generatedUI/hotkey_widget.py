@@ -13,18 +13,125 @@ class Ui_HotkeyWidget(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(300, 100)
+        Form.setStyleSheet("QWidget {\n"
+                           "    background-color: #0a1929;\n"
+                           "    color: #e0f7fa;\n"
+                           "    font-family: \'Segoe UI\';\n"
+                           "    selection-background-color: #1abc9c;\n"
+                           "}\n"
+                           "\n"
+                           "QPushButton {\n"
+                           "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+                           "        stop:0 #1abc9c, stop:1 #3498db);\n"
+                           "    border: 1px solid #107a8c;\n"
+                           "    border-radius: 4px;\n"
+                           "    color: #0a1929;\n"
+                           "    padding: 5px;\n"
+                           "    font-weight: bold;\n"
+                           "}\n"
+                           "\n"
+                           "QPushButton:hover {\n"
+                           "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+                           "        stop:0 #26debf, stop:1 #4aa9ff);\n"
+                           "}\n"
+                           "\n"
+                           "QPushButton:pressed {\n"
+                           "    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+                           "        stop:0 #16a085, stop:1 #2980b9);\n"
+                           "}\n"
+                           "\n"
+                           "QPushButton:disabled {\n"
+                           "     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+                           "        stop:0 #7abeb0, stop:1 #83bade);\n"
+                           "    border: 1px solid #cbcbcb;\n"
+                           "}\n"
+                           "\n"
+                           "QLineEdit, QSpinBox, QComboBox {\n"
+                           "    background-color: #0d2338;\n"
+                           "    border: 1px solid #1abc9c;\n"
+                           "    border-radius: 3px;\n"
+                           "    padding: 5px;\n"
+                           "    color: #e0f7fa;\n"
+                           "    selection-background-color: #3498db;\n"
+                           "}\n"
+                           "\n"
+                           "QComboBox::drop-down {\n"
+                           "    subcontrol-origin: padding;\n"
+                           "    subcontrol-position: top right;\n"
+                           "    width: 20px;\n"
+                           "    border-left: 1px solid #1abc9c;\n"
+                           "}\n"
+                           "\n"
+                           "QComboBox::down-arrow {\n"
+                           "    image: url(:/icons/down_arrow.svg);\n"
+                           "    width: 12px;\n"
+                           "    height: 12px;\n"
+                           "}\n"
+                           "\n"
+                           "QComboBox QAbstractItemView {\n"
+                           "    background: #0d2338;\n"
+                           "    color: #e0f7fa;\n"
+                           "    selection-background-color: #1abc9c;\n"
+                           "    border: 1px solid #3498db;\n"
+                           "}\n"
+                           "\n"
+                           "QRadioButton {\n"
+                           "    spacing: 5px;\n"
+                           "    color: #e0f7fa;\n"
+                           "}\n"
+                           "\n"
+                           "QRadioButton::indicator {\n"
+                           "    width: 16px;\n"
+                           "    height: 16px;\n"
+                           "    border-radius: 9px;\n"
+                           "    border: 2px solid #1abc9c;\n"
+                           "    background: #0a1929;\n"
+                           "}\n"
+                           "\n"
+                           "QRadioButton::indicator:checked {\n"
+                           "    background: qradialgradient(\n"
+                           "        cx:0.5, cy:0.5,\n"
+                           "        fx:0.5, fy:0.5,\n"
+                           "        radius:0.5,\n"
+                           "        stop:0 #1abc9c,\n"
+                           "        stop:0.5 #0a1929\n"
+                           "    );\n"
+                           "}\n"
+                           "\n"
+                           "QLineEdit:focus, QSpinBox:focus, QComboBox:focus {\n"
+                           "    border: 1px solid #4aa9ff;\n"
+                           "}\n"
+                           "\n"
+                           "QSpinBox::up-button, QSpinBox::down-button {\n"
+                           "    background-color: #1abc9c;\n"
+                           "    width: 16px;\n"
+                           "    border: 1px solid #107a8c;\n"
+                           "}\n"
+                           "\n"
+                           "QSpinBox::up-arrow, QSpinBox::down-arrow {\n"
+                           "    image: url(:/icons/spin_arrows.svg);\n"
+                           "    width: 8px;\n"
+                           "    height: 8px;\n"
+                           "}\n"
+                           "\n"
+                           "QSpinBox::up-button:hover, QSpinBox::down-button:hover {\n"
+                           "    background-color: #26debf;\n"
+                           "}")
         self.hotkeyLabel = QtWidgets.QLabel(parent=Form)
         self.hotkeyLabel.setGeometry(QtCore.QRect(156, 10, 131, 79))
         font = QtGui.QFont()
-        font.setPointSize(16)
+        font.setFamily("Segoe UI")
         self.hotkeyLabel.setFont(font)
         self.hotkeyLabel.setFrameShape(QtWidgets.QFrame.Shape.Box)
+        self.hotkeyLabel.setScaledContents(True)
         self.hotkeyLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.hotkeyLabel.setObjectName("hotkeyLabel")
         self.setHotkeyButton = QtWidgets.QPushButton(parent=Form)
         self.setHotkeyButton.setGeometry(QtCore.QRect(10, 10, 131, 81))
         font = QtGui.QFont()
-        font.setPointSize(15)
+        font.setFamily("Segoe UI")
+        font.setBold(True)
+        font.setWeight(75)
         self.setHotkeyButton.setFont(font)
         self.setHotkeyButton.setObjectName("setHotkeyButton")
 
@@ -36,4 +143,4 @@ class Ui_HotkeyWidget(object):
         Form.setWindowTitle(_translate("Form", "Hotkey"))
         self.hotkeyLabel.setText(_translate("Form", "F6"))
         self.setHotkeyButton.setText(_translate("Form", "Set Hotkey\n"
-"(Start/Stop)"))
+                                                        "(Start/Stop)"))

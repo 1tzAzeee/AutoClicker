@@ -10,11 +10,6 @@ import keyboard
 import pynput
 
 
-def load_stylesheet(filename: str) -> str:
-    with open(filename, 'r', encoding='utf-8') as f:
-        return '\n'.join(f.readlines())
-
-
 class HotkeyRecorder(QThread):
     hotkey_recorded = pyqtSignal(str)
 
@@ -51,6 +46,7 @@ class HotkeyRecorder(QThread):
 
         with pynput.keyboard.Listener(on_press=on_press, on_release=on_release) as listener:
             listener.join()
+
 
 class KeyListenerThread(QThread):
     key_pressed = pyqtSignal(str)
@@ -142,10 +138,8 @@ class MainWidget(QWidget, Ui_MainWidget):
     def hotkeys(self):
         keyboard.add_hotkey(self.hotkey, self.toggle_clicker)
 
-
     def initUI(self):
         self.setupUi(self)
-        self.setStyleSheet(load_stylesheet('assets/styles/night.css'))
         self.setFixedSize(401, 383)
         self.buttons()
         self.stopButton.setEnabled(False)
@@ -229,13 +223,18 @@ class MainWidget(QWidget, Ui_MainWidget):
             self.hotkeyForm.show()
 
     def hotkeyChange(self, keys):
-        self.hotkey = keys
-        self.hotkeys()
-        self.hotkeyForm.hotkeyLabel.setText(keys)
+        try:
+            self.hotkey = keys
+            self.hotkeys()
+            self.hotkeyForm.hotkeyLabel.setText(keys)
+        except Exception as e:
+            print(e.__class__.__name__)
+            self.hotkeyForm.setHotkeyButton.setEnabled(True)
 
     def closeEvent(self, a0):
         if self.hotkeyForm.isVisible():
             self.hotkeyForm.close()
+
 
 class HotkeyWidget(QWidget, Ui_HotkeyWidget):
     data_sent = pyqtSignal(str)
@@ -243,7 +242,6 @@ class HotkeyWidget(QWidget, Ui_HotkeyWidget):
     def __init__(self, parent=None):
         super().__init__()
         self.setupUi(self)
-        self.setStyleSheet(load_stylesheet('assets/styles/night.css'))
         self.setFixedSize(300, 100)
         self.parent = parent
         self.setHotkeyButton.clicked.connect(self.startKeyCapture)
@@ -258,7 +256,6 @@ class HotkeyWidget(QWidget, Ui_HotkeyWidget):
     def updateKey(self, key):
         self.data_sent.emit(key)
         self.setHotkeyButton.setEnabled(True)
-
 
 
 if __name__ == "__main__":

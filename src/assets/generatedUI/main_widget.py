@@ -13,7 +13,113 @@ class Ui_MainWidget(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(401, 383)
-        Form.setStyleSheet("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("src/assets/uiFiles\\../../../assets/cursor_arrow_13222.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        Form.setWindowIcon(icon)
+        Form.setStyleSheet("QWidget {\n"
+"    background-color: #0a1929;\n"
+"    color: #e0f7fa;\n"
+"    font-family: \'Segoe UI\';\n"
+"    selection-background-color: #1abc9c;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop:0 #1abc9c, stop:1 #3498db);\n"
+"    border: 1px solid #107a8c;\n"
+"    border-radius: 4px;\n"
+"    color: #0a1929;\n"
+"    padding: 5px;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop:0 #26debf, stop:1 #4aa9ff);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop:0 #16a085, stop:1 #2980b9);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"     background: qlineargradient(x1:0, y1:0, x2:1, y2:0,\n"
+"        stop:0 #7abeb0, stop:1 #83bade);\n"
+"    border: 1px solid #cbcbcb;\n"
+"}\n"
+"\n"
+"QLineEdit, QSpinBox, QComboBox {\n"
+"    background-color: #0d2338;\n"
+"    border: 1px solid #1abc9c;\n"
+"    border-radius: 3px;\n"
+"    padding: 5px;\n"
+"    color: #e0f7fa;\n"
+"    selection-background-color: #3498db;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 20px;\n"
+"    border-left: 1px solid #1abc9c;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(:/icons/down_arrow.svg);\n"
+"    width: 12px;\n"
+"    height: 12px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    background: #0d2338;\n"
+"    color: #e0f7fa;\n"
+"    selection-background-color: #1abc9c;\n"
+"    border: 1px solid #3498db;\n"
+"}\n"
+"\n"
+"QRadioButton {\n"
+"    spacing: 5px;\n"
+"    color: #e0f7fa;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"    border-radius: 9px;\n"
+"    border: 2px solid #1abc9c;\n"
+"    background: #0a1929;\n"
+"}\n"
+"\n"
+"QRadioButton::indicator:checked {\n"
+"    background: qradialgradient(\n"
+"        cx:0.5, cy:0.5,\n"
+"        fx:0.5, fy:0.5,\n"
+"        radius:0.5,\n"
+"        stop:0 #1abc9c,\n"
+"        stop:0.5 #0a1929\n"
+"    );\n"
+"}\n"
+"\n"
+"QLineEdit:focus, QSpinBox:focus, QComboBox:focus {\n"
+"    border: 1px solid #4aa9ff;\n"
+"}\n"
+"\n"
+"QSpinBox::up-button, QSpinBox::down-button {\n"
+"    background-color: #1abc9c;\n"
+"    width: 16px;\n"
+"    border: 1px solid #107a8c;\n"
+"}\n"
+"\n"
+"QSpinBox::up-arrow, QSpinBox::down-arrow {\n"
+"    image: url(:/icons/spin_arrows.svg);\n"
+"    width: 8px;\n"
+"    height: 8px;\n"
+"}\n"
+"\n"
+"QSpinBox::up-button:hover, QSpinBox::down-button:hover {\n"
+"    background-color: #26debf;\n"
+"}")
         self.startButton = QtWidgets.QPushButton(parent=Form)
         self.startButton.setGeometry(QtCore.QRect(10, 240, 141, 61))
         self.startButton.setCheckable(False)
@@ -51,7 +157,7 @@ class Ui_MainWidget(object):
         self.setIntervalLabel = QtWidgets.QLabel(parent=Form)
         self.setIntervalLabel.setGeometry(QtCore.QRect(0, 10, 401, 31))
         font = QtGui.QFont()
-        font.setPointSize(16)
+        font.setFamily("Segoe UI")
         self.setIntervalLabel.setFont(font)
         self.setIntervalLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.setIntervalLabel.setObjectName("setIntervalLabel")
@@ -73,7 +179,7 @@ class Ui_MainWidget(object):
         self.clickTypeComboBox = QtWidgets.QComboBox(parent=self.clickModeFrame)
         self.clickTypeComboBox.setGeometry(QtCore.QRect(120, 50, 81, 31))
         font = QtGui.QFont()
-        font.setPointSize(8)
+        font.setFamily("Segoe UI")
         self.clickTypeComboBox.setFont(font)
         self.clickTypeComboBox.setObjectName("clickTypeComboBox")
         self.clickTypeComboBox.addItem("")
@@ -82,7 +188,7 @@ class Ui_MainWidget(object):
         self.keyLabel = QtWidgets.QLabel(parent=self.clickModeFrame)
         self.keyLabel.setGeometry(QtCore.QRect(160, 90, 31, 31))
         font = QtGui.QFont()
-        font.setPointSize(16)
+        font.setFamily("Segoe UI")
         self.keyLabel.setFont(font)
         self.keyLabel.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.keyLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
