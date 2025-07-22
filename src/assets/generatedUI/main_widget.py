@@ -13,6 +13,86 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(401, 383)
+        Form.setStyleSheet("QWidget {\n"
+"    background-color: #1a1a2e;\n"
+"    color: #e0e0e0;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #3a86ff;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #0f3460;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #2c303d\n"
+"}\n"
+"\n"
+"QRadioButton {\n"
+"    color: #e0e0e0;\n"
+"}\n"
+"QRadioButton::indicator {\n"
+"    width: 13px;\n"
+"    height: 13px;\n"
+"    border: 1px solid #0f3460;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"QRadioButton::indicator:checked {\n"
+"    background-color: #3a86ff;\n"
+"}\n"
+"QRadioButton::indicator:unchecked {\n"
+"    background-color: #16213e;\n"
+"}\n"
+"\n"
+"QComboBox {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #16213e;\n"
+"    color: #e0e0e0;\n"
+"    selection-background-color: #3a86ff;\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #3a86ff;\n"
+"}\n"
+"\n"
+"QSpinBox {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QSpinBox::up-button, QSpinBox::down-button {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"}\n"
+"QSpinBox::up-button:hover, QSpinBox::down-button:hover {\n"
+"    background-color: #3a86ff;\n"
+"}")
         self.startButton = QtWidgets.QPushButton(parent=Form)
         self.startButton.setGeometry(QtCore.QRect(10, 240, 141, 61))
         self.startButton.setCheckable(False)
@@ -21,7 +101,7 @@ class Ui_Form(object):
         self.stopButton.setGeometry(QtCore.QRect(240, 310, 151, 61))
         self.stopButton.setObjectName("stopButton")
         self.horizontalLayoutWidget = QtWidgets.QWidget(parent=Form)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 61, 391, 31))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 60, 401, 31))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.intervalEditLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.intervalEditLayout.setContentsMargins(40, 0, 40, 0)
@@ -40,15 +120,15 @@ class Ui_Form(object):
         self.hotkeyButton.setCheckable(False)
         self.hotkeyButton.setObjectName("hotkeyButton")
         self.secondsLabel = QtWidgets.QLabel(parent=Form)
-        self.secondsLabel.setGeometry(QtCore.QRect(40, 41, 131, 20))
+        self.secondsLabel.setGeometry(QtCore.QRect(40, 41, 141, 16))
         self.secondsLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.secondsLabel.setObjectName("secondsLabel")
         self.millisecondsLabel = QtWidgets.QLabel(parent=Form)
-        self.millisecondsLabel.setGeometry(QtCore.QRect(220, 40, 131, 20))
+        self.millisecondsLabel.setGeometry(QtCore.QRect(220, 40, 141, 20))
         self.millisecondsLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.millisecondsLabel.setObjectName("millisecondsLabel")
         self.setIntervalLabel = QtWidgets.QLabel(parent=Form)
-        self.setIntervalLabel.setGeometry(QtCore.QRect(10, 10, 381, 31))
+        self.setIntervalLabel.setGeometry(QtCore.QRect(10, 10, 391, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.setIntervalLabel.setFont(font)
@@ -60,7 +140,7 @@ class Ui_Form(object):
         self.clickModeFrame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.clickModeFrame.setObjectName("clickModeFrame")
         self.clickTypeLabel = QtWidgets.QLabel(parent=self.clickModeFrame)
-        self.clickTypeLabel.setGeometry(QtCore.QRect(60, 50, 51, 21))
+        self.clickTypeLabel.setGeometry(QtCore.QRect(60, 50, 51, 31))
         self.clickTypeLabel.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
         self.clickTypeLabel.setObjectName("clickTypeLabel")
         self.keyboardModeToggle = QtWidgets.QRadioButton(parent=self.clickModeFrame)
@@ -70,7 +150,10 @@ class Ui_Form(object):
         self.setKeyButton.setGeometry(QtCore.QRect(90, 90, 51, 31))
         self.setKeyButton.setObjectName("setKeyButton")
         self.clickTypeComboBox = QtWidgets.QComboBox(parent=self.clickModeFrame)
-        self.clickTypeComboBox.setGeometry(QtCore.QRect(120, 50, 69, 22))
+        self.clickTypeComboBox.setGeometry(QtCore.QRect(120, 50, 81, 31))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.clickTypeComboBox.setFont(font)
         self.clickTypeComboBox.setObjectName("clickTypeComboBox")
         self.clickTypeComboBox.addItem("")
         self.clickTypeComboBox.addItem("")
@@ -84,33 +167,128 @@ class Ui_Form(object):
         self.keyLabel.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.keyLabel.setObjectName("keyLabel")
         self.mouseButtonLabel = QtWidgets.QLabel(parent=self.clickModeFrame)
-        self.mouseButtonLabel.setGeometry(QtCore.QRect(90, 10, 31, 21))
+        self.mouseButtonLabel.setGeometry(QtCore.QRect(90, 10, 41, 31))
         self.mouseButtonLabel.setObjectName("mouseButtonLabel")
         self.mouseButtonsBox = QtWidgets.QComboBox(parent=self.clickModeFrame)
-        self.mouseButtonsBox.setGeometry(QtCore.QRect(130, 10, 61, 21))
+        self.mouseButtonsBox.setGeometry(QtCore.QRect(130, 10, 71, 31))
         self.mouseButtonsBox.setObjectName("mouseButtonsBox")
         self.mouseButtonsBox.addItem("")
         self.mouseButtonsBox.addItem("")
         self.mouseButtonsBox.addItem("")
         self.mouseModeToggle = QtWidgets.QRadioButton(parent=self.clickModeFrame)
-        self.mouseModeToggle.setGeometry(QtCore.QRect(10, 10, 82, 21))
+        self.mouseModeToggle.setGeometry(QtCore.QRect(10, 10, 61, 31))
         self.mouseModeToggle.setObjectName("mouseModeToggle")
         self.repeatModeFrame = QtWidgets.QFrame(parent=Form)
         self.repeatModeFrame.setGeometry(QtCore.QRect(220, 100, 171, 131))
+        self.repeatModeFrame.setStyleSheet("/* Основной стиль для всего приложения */\n"
+"QWidget {\n"
+"    background-color: #1a1a2e;\n"
+"    color: #e0e0e0;\n"
+"}\n"
+"\n"
+"/* Стиль для кнопок QPushButton с градиентом */\n"
+"QPushButton {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                stop:0 #16213e, stop:1 #4da6ff);\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                stop:0 #3a86ff, stop:1 #4da6ff);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                stop:0 #0f3460, stop:1 #3a86ff);\n"
+"}\n"
+"/* СТИЛЬ ДЛЯ ОТКЛЮЧЕННЫХ КНОПОК */\n"
+"QPushButton:disabled {\n"
+"    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                stop:0 #2a2a3e, stop:1 #3d4b5d);\n"
+"    border: 1px solid #1c1c3a;\n"
+"    color: #7a7a8c;\n"
+"}\n"
+"\n"
+"/* Стиль для радиокнопок QRadioButton */\n"
+"QRadioButton {\n"
+"    color: #e0e0e0;\n"
+"}\n"
+"QRadioButton::indicator {\n"
+"    width: 13px;\n"
+"    height: 13px;\n"
+"    border: 1px solid #0f3460;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"QRadioButton::indicator:checked {\n"
+"    background-color: #4da6ff;\n"
+"}\n"
+"QRadioButton::indicator:unchecked {\n"
+"    background-color: #16213e;\n"
+"}\n"
+"\n"
+"/* Стиль для выпадающих списков QComboBox */\n"
+"QComboBox {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"}\n"
+"QComboBox::down-arrow {\n"
+"    /* Можно указать путь к иконке: image: url(path/to/down_arrow.png); */\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #16213e;\n"
+"    color: #e0e0e0;\n"
+"    selection-background-color: #4da6ff;\n"
+"}\n"
+"\n"
+"/* Стиль для полей ввода QLineEdit */\n"
+"QLineEdit {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #4da6ff;\n"
+"}\n"
+"\n"
+"/* Стиль для числовых полей QSpinBox */\n"
+"QSpinBox {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"    color: #e0e0e0;\n"
+"    padding: 5px;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"QSpinBox::up-button, QSpinBox::down-button {\n"
+"    background-color: #16213e;\n"
+"    border: 1px solid #0f3460;\n"
+"}\n"
+"QSpinBox::up-button:hover, QSpinBox::down-button:hover {\n"
+"    background-color: #4da6ff;\n"
+"}")
         self.repeatModeFrame.setFrameShape(QtWidgets.QFrame.Shape.Box)
         self.repeatModeFrame.setFrameShadow(QtWidgets.QFrame.Shadow.Raised)
         self.repeatModeFrame.setObjectName("repeatModeFrame")
         self.repeatTimesLabel = QtWidgets.QLabel(parent=self.repeatModeFrame)
-        self.repeatTimesLabel.setGeometry(QtCore.QRect(130, 70, 47, 21))
+        self.repeatTimesLabel.setGeometry(QtCore.QRect(130, 70, 47, 31))
         self.repeatTimesLabel.setObjectName("repeatTimesLabel")
         self.repeatUntilStoppedToggle = QtWidgets.QRadioButton(parent=self.repeatModeFrame)
-        self.repeatUntilStoppedToggle.setGeometry(QtCore.QRect(10, 40, 131, 17))
+        self.repeatUntilStoppedToggle.setGeometry(QtCore.QRect(10, 26, 131, 31))
         self.repeatUntilStoppedToggle.setObjectName("repeatUntilStoppedToggle")
         self.repeatTimesToggle = QtWidgets.QRadioButton(parent=self.repeatModeFrame)
-        self.repeatTimesToggle.setGeometry(QtCore.QRect(10, 70, 61, 21))
+        self.repeatTimesToggle.setGeometry(QtCore.QRect(10, 70, 61, 31))
         self.repeatTimesToggle.setObjectName("repeatTimesToggle")
         self.repeatSpinBox = QtWidgets.QSpinBox(parent=self.repeatModeFrame)
-        self.repeatSpinBox.setGeometry(QtCore.QRect(80, 70, 42, 22))
+        self.repeatSpinBox.setGeometry(QtCore.QRect(80, 70, 42, 31))
         self.repeatSpinBox.setObjectName("repeatSpinBox")
 
         self.retranslateUi(Form)

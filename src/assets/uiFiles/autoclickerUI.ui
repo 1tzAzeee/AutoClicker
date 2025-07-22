@@ -13,6 +13,88 @@
   <property name="windowTitle">
    <string>AutoClicker</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+QPushButton {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QPushButton:hover {
+    background-color: #3a86ff;
+}
+QPushButton:pressed {
+    background-color: #0f3460;
+}
+
+QPushButton:disabled {
+    background-color: #2c303d
+}
+
+QRadioButton {
+    color: #e0e0e0;
+}
+QRadioButton::indicator {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #0f3460;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color: #3a86ff;
+}
+QRadioButton::indicator:unchecked {
+    background-color: #16213e;
+}
+
+QComboBox {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox QAbstractItemView {
+    background-color: #16213e;
+    color: #e0e0e0;
+    selection-background-color: #3a86ff;
+}
+
+QLineEdit {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QLineEdit:focus {
+    border: 1px solid #3a86ff;
+}
+
+QSpinBox {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+}
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #3a86ff;
+}</string>
+  </property>
   <widget class="QPushButton" name="startButton">
    <property name="geometry">
     <rect>
@@ -46,8 +128,8 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>61</y>
-     <width>391</width>
+     <y>60</y>
+     <width>401</width>
      <height>31</height>
     </rect>
    </property>
@@ -104,8 +186,8 @@
     <rect>
      <x>40</x>
      <y>41</y>
-     <width>131</width>
-     <height>20</height>
+     <width>141</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -120,7 +202,7 @@
     <rect>
      <x>220</x>
      <y>40</y>
-     <width>131</width>
+     <width>141</width>
      <height>20</height>
     </rect>
    </property>
@@ -136,7 +218,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>381</width>
+     <width>391</width>
      <height>31</height>
     </rect>
    </property>
@@ -173,7 +255,7 @@
       <x>60</x>
       <y>50</y>
       <width>51</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -214,9 +296,14 @@
      <rect>
       <x>120</x>
       <y>50</y>
-      <width>69</width>
-      <height>22</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+     </font>
     </property>
     <item>
      <property name="text">
@@ -263,8 +350,8 @@
      <rect>
       <x>90</x>
       <y>10</y>
-      <width>31</width>
-      <height>21</height>
+      <width>41</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -276,8 +363,8 @@
      <rect>
       <x>130</x>
       <y>10</y>
-      <width>61</width>
-      <height>21</height>
+      <width>71</width>
+      <height>31</height>
      </rect>
     </property>
     <item>
@@ -301,8 +388,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>82</width>
-      <height>21</height>
+      <width>61</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -319,6 +406,103 @@
      <height>131</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">/* Основной стиль для всего приложения */
+QWidget {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+/* Стиль для кнопок QPushButton с градиентом */
+QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #16213e, stop:1 #4da6ff);
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #3a86ff, stop:1 #4da6ff);
+}
+QPushButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0f3460, stop:1 #3a86ff);
+}
+/* СТИЛЬ ДЛЯ ОТКЛЮЧЕННЫХ КНОПОК */
+QPushButton:disabled {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #2a2a3e, stop:1 #3d4b5d);
+    border: 1px solid #1c1c3a;
+    color: #7a7a8c;
+}
+
+/* Стиль для радиокнопок QRadioButton */
+QRadioButton {
+    color: #e0e0e0;
+}
+QRadioButton::indicator {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #0f3460;
+    border-radius: 7px;
+}
+QRadioButton::indicator:checked {
+    background-color: #4da6ff;
+}
+QRadioButton::indicator:unchecked {
+    background-color: #16213e;
+}
+
+/* Стиль для выпадающих списков QComboBox */
+QComboBox {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QComboBox::drop-down {
+    border: none;
+}
+QComboBox::down-arrow {
+    /* Можно указать путь к иконке: image: url(path/to/down_arrow.png); */
+}
+QComboBox QAbstractItemView {
+    background-color: #16213e;
+    color: #e0e0e0;
+    selection-background-color: #4da6ff;
+}
+
+/* Стиль для полей ввода QLineEdit */
+QLineEdit {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QLineEdit:focus {
+    border: 1px solid #4da6ff;
+}
+
+/* Стиль для числовых полей QSpinBox */
+QSpinBox {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+    color: #e0e0e0;
+    padding: 5px;
+    border-radius: 3px;
+}
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #16213e;
+    border: 1px solid #0f3460;
+}
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #4da6ff;
+}</string>
+   </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
    </property>
@@ -331,7 +515,7 @@
       <x>130</x>
       <y>70</y>
       <width>47</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -342,9 +526,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>26</y>
       <width>131</width>
-      <height>17</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -357,7 +541,7 @@
       <x>10</x>
       <y>70</y>
       <width>61</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -370,7 +554,7 @@
       <x>80</x>
       <y>70</y>
       <width>42</width>
-      <height>22</height>
+      <height>31</height>
      </rect>
     </property>
    </widget>

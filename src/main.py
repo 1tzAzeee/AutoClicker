@@ -10,20 +10,17 @@ import pynput
 
 
 class KeyListenerThread(QThread):
-    key_pressed = pyqtSignal(str)  # Сигнал для передачи нажатой клавиши
+    key_pressed = pyqtSignal(str)
 
     def run(self):
         def on_press(key):
             try:
-                # Для обычных клавиш (буквы, цифры)
                 key_str = key.char
             except AttributeError:
-                # Для специальных клавиш (Ctrl, Shift и т.д.)
                 key_str = str(key).replace("Key.", "")
             self.key_pressed.emit(key_str)
-            return False  # Останавливаем слушатель после первого нажатия
+            return False
 
-        # Создаём и запускаем слушатель
         with pynput.keyboard.Listener(on_press=on_press) as listener:
             listener.join()
 
