@@ -1,9 +1,9 @@
 
-[![header](https://capsule-render.vercel.app/api?type=rounded&height=150&color=gradient&text=AutoClicker&desc=by%201tzAzeee&descAlignY=80)](https://github.com/ItzAzee/AutoClicker)
+[![header](https://capsule-render.vercel.app/api?type=rounded&height=150&color=gradient&text=AutoClicker&desc=by%201tzAzeee&descAlignY=80)](https://github.com/1tzAzeee/AutoClicker)
 
 # Download link
 
-[![GitHub Release](https://img.shields.io/github/v/release/ItzAzee/AutoClicker?style=for-the-badge&label=Download+for+windows&color=blue)](https://github.com/ItzAzee/AutoClicker/releases/download/v1.0.0/Autoclicker.exe)
+[![GitHub Release](https://img.shields.io/github/v/release/ItzAzee/AutoClicker?style=for-the-badge&label=Download+for+windows&color=blue)](https://github.com/1tzAzeee/AutoClicker/releases/download/v1.0.0/Autoclicker.exe)
 
 # What is this?
 
